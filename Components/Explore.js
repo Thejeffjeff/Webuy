@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TextInput, SafeAreaView, Platform, StatusBar, ScrollView, Image} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -7,7 +8,7 @@ import Categories from './EkstraCopmponents/Categories';
 export default class Explore extends Component {
 
     //Vi instanitere at header højden er 80, hvis det er en android skal de ændre højden til 100
-    //Yderligere skal den tage mobilens nuværende højde på statusBaren
+    //Yderligere skal den tage mobilens nuværende højde fra statusBaren
     componentDidMount() {
         this.startHeaderHeight = 80
         if(Platform.OS == 'android') {
@@ -16,30 +17,37 @@ export default class Explore extends Component {
     }
     render() {
     return  (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <View style={styles.container}>
                 <View style={styles.ViewStyle, {height: this.startHeaderHeight}} >
+                {/*Her opsættes en TextInput som skal være appens søgemaskine*/}
                     <View style={styles.searchBar}>
                         <Icon name="ios-search" size={20} style={{marginRight: 10}}/>
                         <TextInput
-                            underlineColorAndroid="transparent"
                             placeholder="Search"
                             placeholderTextColor="grey"
                             style={styles.inputText}
                         />
                     </View>
                 </View>
-                <ScrollView scrollEventThrottle = {16}>
+
+                {/* Her opsættes der to scrollview en som er vertikal og horisontal
+                Meningen med dette er at kategorier skal man kunne rolle til højre og venstre,
+                mens den vertikale skal kunne fremvises resultater fra søgemaskinen*/}
+                <ScrollView>
                     <View style= {styles.ViewStyle2}>
                         <Text style={styles.title}>
                             Kategorier
                         </Text>
 
                         <View style={{height: 130, marginTop: 20}}>
+                            {/* Opsætning af buttons, men ingen funktioner endnu*/}
                             <ScrollView 
                             horizontal={true}
                             showsHorizontalScrollIndicator={false}
                             >
+                                {/* Categories komponenten kaldes så det er muligt at fremvise de forskellige kategorier,
+                                derudover tager denne komponent to props: navn og et billede source som vi henter fra vores assets*/}
                                 <Categories imageUri={require('../assets/home.jpg')}
                                 name="Møbler"
                                 />  
@@ -71,7 +79,7 @@ export default class Explore extends Component {
                     </View>
                 </ScrollView>
             </View>
-        </SafeAreaView>
+        </View>
     )
     }
 }
@@ -80,6 +88,7 @@ export default class Explore extends Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      marginTop:15
     },
     ViewStyle: {
         backgroundColor:'white',
@@ -89,7 +98,7 @@ const styles = StyleSheet.create({
         backgroundColor: "grey",
         flex: 1,
         backgroundColor: "white",
-        paddingTop: 20,
+        paddingTop: 10,
     },
     searchBar: {
     backgroundColor: "white",
@@ -97,8 +106,8 @@ const styles = StyleSheet.create({
     padding: 10,  
     marginHorizontal: 10,
     shadowOffset: {widht: 1, height: 1},
-    shadowColor: "red",
-    shadowOpacity: 0.3,
+    shadowColor: "black",
+    shadowOpacity: 0.4,
     elevation: 1,
     marginTop: Platform.OS == 'andorid' ? 30: null,
     },

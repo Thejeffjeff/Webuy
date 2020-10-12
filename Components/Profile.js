@@ -1,13 +1,15 @@
+import 'react-native-gesture-handler';
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from 'react-native';
 import { Button } from 'react-native-paper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class Profile extends Component {
 
     render() {
     return  (
         <View>
+    {/*Vi kalder på ImageBackground, som tager et billeds-webadresse som kilde(source) og sætter det som baggrundsbillede, 
+    hvor inde i denne komponent opstilles en profil */}
     <ImageBackground
         source={{uri:'https://images.unsplash.com/photo-1544369757-b073bb046bd0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=80'}}
         style={styles.container}>
@@ -18,6 +20,8 @@ export default class Profile extends Component {
             <Text style = {styles.textStyle} > Guest</Text>
         </View>
     </ImageBackground>
+
+            {/* Opsætning af buttons, men ingen funktioner endnu*/}
     <TouchableOpacity style={styles.buttonStyle} onPress>
         <Text style={styles.text}>Login</Text>
     </TouchableOpacity >
@@ -38,7 +42,7 @@ export default class Profile extends Component {
 }
 }
 
-
+//Dette er styling
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "lightgrey"

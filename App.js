@@ -11,13 +11,15 @@ import { createAppContainer } from 'react-navigation';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import firebase from 'firebase';
+import SettingStack from './Components/SettingStack';
 
 
 const TabNavigator = createBottomTabNavigator({
   //Tilføjer router til de forskellige komponenter
   Home:{
-    screen: MainPage,
+    screen: SettingStack,
     navigationOptions: {
+      //Design af tabnavigater
       tabBarLabel: "Hjem",
       tabBarIcon:({tintColor}) => (
         <Entypo name="home" size ={24} color={tintColor} />
@@ -62,6 +64,7 @@ const TabNavigator = createBottomTabNavigator({
   }
 )
 
+//Der laves en constant af AppContaier som opretter en AppContainer og tager imod vores TabNavigator
 const AppContainer = createAppContainer(TabNavigator)
 
 export default class App extends Component {
@@ -88,7 +91,7 @@ export default class App extends Component {
         this.setState({ user });
       });
   }
-
+    //Her skal den rendere vores AppContainer
   render(){
       return(
           <AppContainer/>

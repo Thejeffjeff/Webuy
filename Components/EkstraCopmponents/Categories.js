@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Image} from 'react-native';
 
 
 export default class Categories extends Component {
+    //Måden Categories renderes er ved at vi laver et view, hvor billede placeret og derefter en view med text
     render() {
     return  (
             <View style={styles.slide}>
